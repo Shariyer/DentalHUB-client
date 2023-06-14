@@ -1,0 +1,73 @@
+[
+    {
+        "categoryName": "suv",
+        "name": "Range Rover 2023",
+        "img": "https://i.ibb.co/xg60508/range-Rover.jpg",
+        "originalPrice": "104,000",
+        "resalePrice": "90,000",
+        "location": "Matijheel",
+        "usage": "2 months",
+        "sellerName": "Abdullah"
+    },
+    {
+        "categoryName": "suv",
+        "name": "Mazda CX-30",
+        "img": "https://i.ibb.co/1rr211B/mazda.jpg",
+        "originalPrice": "22,000",
+        "resalePrice": "15,000",
+        "location": "Shahbag",
+        "usage": "3 months",
+        "sellerName": "Riyad"
+    },
+    {
+        "categoryName": "sports",
+        "name": "Nissan GT-R 2020",
+        "img": "https://i.ibb.co/v3sn9Vz/nissan-gt-r.jpg",
+        "originalPrice": "114,000",
+        "resalePrice": "95,000",
+        "location": "Dhanmondi-32",
+        "usage": "8 months",
+        "sellerName": "Fajle"
+    },
+    {
+        "categoryName": "sports",
+        "name": "Dodge Challenger GT",
+        "img": "https://i.ibb.co/k511xGQ/dodge.jpg",
+        "originalPrice": "31,000",
+        "resalePrice": "22,000",
+        "location": "Khillkhet",
+        "usage": "10 months",
+        "sellerName": "Shahas"
+    },
+    {
+        "categoryName": "coupe",
+        "name": "Audi A5 2024",
+        "img": "https://i.ibb.co/jr5Tktn/audi.jpg",
+        "originalPrice": "64,000",
+        "resalePrice": "50,000",
+        "location": "Dhanmondi-27",
+        "usage": "1 months",
+        "sellerName": "Rizvi"
+    },
+    {
+        "categoryName": "coupe",
+        "name": "Ford Mustang 2024",
+        "img": "https://i.ibb.co/dKkvTkd/mustang.jpg",
+        "originalPrice": "32,000",
+        "resalePrice": "25,000",
+        "location": "Ashuliya",
+        "usage": "5 months",
+        "sellerName": "Niloy"
+    },
+    [
+        {
+            "categoryName": "suv"
+        },
+        {
+            "categoryName": "sports"
+        },
+        {
+            "categoryName": "coupe"
+        }
+    ]
+]
