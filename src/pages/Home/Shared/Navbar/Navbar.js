@@ -20,6 +20,13 @@ const Navbar = () => {
   // };
   const menuItems = (
     <>
+      {/* {user?.uid && (
+        <li className="sm:block md:block lg:hidden ml-24 text-xl text-start">
+          Welcome Back{" "}
+          <span className="uppercase text-green-500">{user?.displayName}</span>
+        </li>
+      )} */}
+
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -97,9 +104,14 @@ const Navbar = () => {
         <Link to="/" className="ml-2 italic font-extrabold text-xl ">
           Dental HUB
         </Link>
-        <h1 className=" ml-24">
-          Welcome Back <span>{user?.displayName}</span>
-        </h1>
+        {user?.uid && (
+          <h1 className="hidden  lg:block ml-24 text-xl font-semibold">
+            Welcome Back{" "}
+            <span className="uppercase text-green-500">
+              {user?.displayName}
+            </span>
+          </h1>
+        )}
       </div>
       <div className="navbar-right hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
