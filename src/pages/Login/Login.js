@@ -16,7 +16,7 @@ const Login = () => {
 
   //token paile navigate korbo
   if (token) {
-    console.log(token);
+    // console.log(token);
     navigate(from, { replace: true });
   }
 
@@ -27,7 +27,7 @@ const Login = () => {
 
     const email = form.email.value;
     const password = form.password.value;
-    console.log("Given(for login) Email,pass:", email, password);
+    // console.log("Given(for login) Email,pass:", email, password);
 
     LoginWithEP(email, password)
       .then((result) => {
@@ -71,7 +71,7 @@ const Login = () => {
     <div className="hero">
       <div className="hero-content">
         <div className="card  w-full  shadow-2xl bg-base-100">
-          <h1 className="text-5xl text-center font-bold">Login</h1>
+          <h1 className=" mt-1 text-4xl text-center font-bold">Login</h1>
 
           <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
@@ -115,7 +115,10 @@ const Login = () => {
           <div className="flex flex-col justify-center">
             <button
               onClick={handleGoogleLogin}
-              className="flex justify-center items-center flex-col  m-4 rounded-lg hover:bg-gradient-to-r from-secondary to-primary md:bg-slate-100 lg:bg-slate-100 bg-slate-700 ">
+              className="flex justify-center items-center flex-col  m-4 rounded-lg hover:bg-gradient-to-r from-purple-200 to-indigo-500 
+              md:bg-slate-100
+               lg:bg-slate-100
+               bg-slate-700 ">
               <h1 className="text-5xl m-0 p-0">
                 <FcGoogle></FcGoogle>
               </h1>

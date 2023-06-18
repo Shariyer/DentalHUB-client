@@ -7,6 +7,7 @@ import { authContext } from "../../../ContextAPI/ContextAPI";
 const MyAppointment = () => {
   const { user } = useContext(authContext);
   const userEmail = user?.email;
+  console.log(userEmail);
   const { data: usersAppointments = [] } = useQuery({
     queryKey: ["usersAppointment", userEmail],
     queryFn: async () => {
@@ -19,7 +20,7 @@ const MyAppointment = () => {
         }
       );
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
 
       return data;
     },
@@ -32,13 +33,9 @@ const MyAppointment = () => {
   //       );
   //     },
   //   });
-  //   console.log(usersAppointments);
+  // console.log(usersAppointments);
   return (
     <div className="overflow-x-auto">
-      {/* 
-      {
-        usersAppointments?.approved
-      } */}
       {usersAppointments?.length === 0 ? (
         <div className="text-center mt-8 p-5">
           <h3 className="text-3xl text-red-700 font-bold">

@@ -5,7 +5,7 @@ import React from "react";
 const PersonCard = ({ data }) => {
   const { img, des, location, name } = data;
   return (
-    <div className="card shadow-2xl p-8 bg-transparent hover:mx-[-10px] hover:bg-indigo-200">
+    <div className="card shadow-2xl p-8 m-2  hover:mx-[-15px] hover:bg-gradient-to-r from-purple-200 to-indigo-500">
       <div className="card-body">
         <p>{des}</p>
         <div className="flex justify-start items-center mt-5">

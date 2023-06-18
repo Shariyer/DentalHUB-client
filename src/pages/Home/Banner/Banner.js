@@ -3,6 +3,7 @@
 import React from "react";
 import bannerPhoto from "../../../assets/images/bg.jpg";
 import CardInfo from "./CardInfo/CardInfo";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -23,9 +24,11 @@ const Banner = () => {
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the
             </p>
-            <button className="btn text-white bg-gradient-to-r from-purple-200 to-indigo-500">
-              Get Started
-            </button>
+            <Link to="/appointment">
+              <button className="btn text-white bg-gradient-to-r from-purple-200 to-indigo-500">
+                Get Started
+              </button>
+            </Link>
           </div>
         </div>
       </div>

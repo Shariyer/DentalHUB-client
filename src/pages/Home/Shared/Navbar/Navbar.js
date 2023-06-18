@@ -1,15 +1,18 @@
 /** @format */
 
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "../../../../ContextAPI/ContextAPI";
 
 const Navbar = () => {
   // const [closeButton, setCloseButton] = useState(false);
   const { user, LogOut } = useContext(authContext);
+  const navigate = useNavigate();
   const handleLogOut = () => {
     LogOut()
-      .then(() => {})
+      .then(() => {
+        navigate("/login");
+      })
       .catch((err) => console.log(err));
   };
   // const handleDrawerClose = () => {
@@ -63,7 +66,7 @@ const Navbar = () => {
   );
   return (
     <div className="navbar bg-base-100">
-      <div className="navbar-start lg:border md:border rounded-sm border-sky-500 lg:bg-gradient-to-r from-purple-200 to-indigo-500 px-2">
+      <div className="navbar-start lg:py-1 md:py-1  lg:border md:border rounded-sm border-sky-500 lg:bg-gradient-to-r from-purple-200 to-indigo-500 px-2 relative">
         <div className="dropdown">
           <label tabIndex={1} className="btn btn-ghost lg:hidden">
             <svg
@@ -91,9 +94,12 @@ const Navbar = () => {
           className="hidden lg:block md:block w-11"
           alt=""
         />
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          Dental Hub
+        <Link to="/" className="ml-2 italic font-extrabold text-xl ">
+          Dental HUB
         </Link>
+        <h1 className=" ml-24">
+          Welcome Back <span>{user?.displayName}</span>
+        </h1>
       </div>
       <div className="navbar-right hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>

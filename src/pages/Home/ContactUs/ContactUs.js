@@ -1,9 +1,12 @@
 /** @format */
 
-import React from "react";
-import bg from "../../../assets/images/ContactBg.jpg";
+import React, { useContext } from "react";
+import { authContext } from "../../../ContextAPI/ContextAPI";
+import { toast } from "react-hot-toast";
+// import bg from "../../../assets/images/ContactBg.jpg";
 
 const ContactUs = () => {
+  const { user } = useContext(authContext);
   const handleContactUs = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -12,23 +15,27 @@ const ContactUs = () => {
     const reqContactSubject = form.reqContactSubject.value;
     const reqContactMassage = form.reqContactMassage.value;
 
-    console.log(
-      "Contact Us INFO",
+    const contactRequestData = {
+      email: user?.email,
       reqContactEmail,
       reqContactSubject,
-      reqContactMassage
-    );
+      reqContactMassage,
+    };
 
     form.reset();
-
-    // LoginWithEP(email, password)
-    //   .then((result) => {
-    //     const user = result.user;
-    //     console.log("user EP user Logged IN as:", user);
-    //     setLoginUserEmail(email);
-    //     form.reset();
-    //   })
-    //   .catch((err) => console.log(err));
+    fetch(`http://localhost:5000/users/contactRequest?email=${user?.email}`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(contactRequestData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Congratulations !! Successfully Saved your Request");
+        }
+      });
   };
   return (
     <div
@@ -46,26 +53,29 @@ const ContactUs = () => {
         <div className="form-control">
           <input
             type="email"
+            required
             name="reqContactEmail"
             placeholder="Email Address"
-            className="input input-bordered mb-3 bg-transparent hover:shadow-2xl placeholder-black  hover:mx-[-10px] hover:bg-indigo-200 
+            className="input input-bordered mb-3 bg-transparent hover:shadow-2xl placeholder-black  hover:mx-[-10px] hover:bg-gradient-to-r from-purple-200 to-indigo-500 
             "
           />
         </div>
         <div className="form-control">
           <input
             type="text"
+            required
             name="reqContactSubject"
             placeholder="Subject"
-            className="input input-bordered mb-3 bg-transparent hover:shadow-2xl placeholder-black  hover:mx-[-10px] hover:bg-indigo-200"
+            className="input input-bordered mb-3 bg-transparent hover:shadow-2xl placeholder-black  hover:mx-[-10px] hover:bg-gradient-to-r from-purple-200 to-indigo-500"
           />
         </div>
         <div className="form-control text-black">
           <input
             type="text"
+            required
             name="reqContactMassage"
             placeholder="Your message"
-            className="input input-bordered input-lg mb-3 h-32 bg-transparent hover:shadow-2xl placeholder-black  hover:mx-[-10px] hover:bg-indigo-200"
+            className="input input-bordered input-lg mb-3 h-32 bg-transparent hover:shadow-2xl placeholder-black  hover:mx-[-10px] hover:bg-gradient-to-r from-purple-200 to-indigo-500"
           />
         </div>
         <div className="flex justify-center items-center mt-6 font-bold text-white">
@@ -77,7 +87,7 @@ const ContactUs = () => {
           </button> */}
           <div className="form-control mt-6">
             <input
-              className="btn bg-gradient-to-r from-secondary to-primary "
+              className="btn bg-gradient-to-r text-black from-purple-200 to-indigo-500"
               type="submit"
               value="Submit"
             />

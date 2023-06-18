@@ -4,7 +4,7 @@
 
 // const useToken = (email) => {
 //   console.log("inside usetoken", email);
-//   const [token, setToken] = useState("");
+//   const [isApproved, setIsApproved] = useState(false);
 //   useEffect(() => {
 //     if (email) {
 //       fetch(`http://localhost:5000/jwt?email=${email}`)
@@ -26,21 +26,23 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-const useUserType = (email) => {
-  console.log(email, "inside YTpe");
+const useIsApprovalCheck = (email) => {
   const {
-    data: userType,
+    data: isApprovalCheck,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["userType"],
+    queryKey: ["isApprovalCheck"],
     queryFn: async () => {
       try {
-        const res = await fetch(`http://localhost:5000/users/admin/${email}`, {
-          headers: {
-            authorization: `bearer ${localStorage.getItem("dentalHubToken")}`,
-          },
-        });
+        const res = await fetch(
+          `http://localhost:5000/users/approvalCheck?email=${email}`,
+          {
+            headers: {
+              authorization: `bearer ${localStorage.getItem("dentalHubToken")}`,
+            },
+          }
+        );
         const data = await res.json();
         // console.log(data, "from User type");
         return data;
@@ -50,7 +52,7 @@ const useUserType = (email) => {
     },
   });
 
-  return [userType, isLoading, refetch];
+  return [isApprovalCheck, isLoading, refetch];
 };
 
-export default useUserType;
+export default useIsApprovalCheck;

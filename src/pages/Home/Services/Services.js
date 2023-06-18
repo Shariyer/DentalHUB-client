@@ -6,6 +6,7 @@ import whitening from "../../../assets/images/whitening.png";
 import fluoride from "../../../assets/images/fluoride.png";
 import Service from "./Service/Service";
 import treatment from "../../../assets/images/careService.jpg";
+import { Link } from "react-router-dom";
 
 const servicesData = [
   {
@@ -40,31 +41,7 @@ const Services = () => {
           <Service key={service.id} data={service}></Service>
         ))}
       </div>
-      {/* <div className="hero mt-20">
-        <div className="hero-content ">
-          <img
-            src={treatment}
-            className=" rounded-lg shadow-2xl lg:w-1/3"
-            alt=""
-          />
-          <div className="ml-16 lg:w-1/2 ">
-            <h1 className="text-5xl font-bold">
-              Exceptional Dental Care, on Your Terms
-            </h1>
-            <p className="py-6">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The
-              point of using Lorem Ipsumis that it has a more-or-less normal
-              distribution of letters,as opposed to using 'Content here, content
-              here', making it look like readable English. Many desktop
-              publishing packages and web page
-            </p>
-            <button className="btn text-white bg-gradient-to-r from-secondary to-primary">
-              Get Started
-            </button>
-          </div>
-        </div>
-      </div> */}
+
       <div className="mt-10  flex flex-col lg:flex-row justify-between items-center">
         <figure>
           <img
@@ -83,8 +60,10 @@ const Services = () => {
             here', making it look like readable English. Many desktop publishing
             packages and web page
           </p>
-          <div className="card-action flex justify-start">
-            <button className="btn btn-primary">Get Started</button>
+          <div className="card-action flex justify-start mt-8">
+            <Link to="/appointment">
+              <button className="btn btn-primary">Get Started</button>
+            </Link>
           </div>
         </div>
       </div>

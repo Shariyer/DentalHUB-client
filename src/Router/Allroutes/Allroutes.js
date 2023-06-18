@@ -13,6 +13,9 @@ import AllUsers from "../../pages/DashBoard/All Users/AllUsers";
 import MyAppointment from "../../pages/DashBoard/MyAppointment/MyAppointment";
 import ContactUs from "../../pages/Home/ContactUs/ContactUs";
 import Services from "../../pages/Home/Services/Services";
+import Review from "../../pages/Review/Review";
+import MyReviews from "../../pages/DashBoard/MyReviews/MyReviews";
+import ContactRequest from "../../pages/DashBoard/ContactRequest/ContactRequest";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +45,10 @@ const router = createBrowserRouter([
         path: "/about",
         element: <Services />,
       },
+      {
+        path: "/review",
+        element: <Review />,
+      },
     ],
   },
   {
@@ -58,7 +65,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/allUsers",
-        element: <AllUsers />,
+        element: (
+          <PrivateRoute>
+            <AllUsers />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/myReviews",
+        element: <MyReviews />,
+      },
+      {
+        path: "/dashboard/contactRequest",
+        element: (
+          <PrivateRoute>
+            <ContactRequest />
+          </PrivateRoute>
+        ),
       },
     ],
   },

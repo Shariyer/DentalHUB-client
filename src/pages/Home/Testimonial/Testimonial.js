@@ -10,7 +10,7 @@ import PersonCard from "./PersonCard/PersonCard";
 const testimonialData = [
   {
     id: 1,
-    name: "Winson Herry",
+    name: "Wins Herry",
     des: "It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribute to using Content here, content",
     img: person1,
     location: "california",

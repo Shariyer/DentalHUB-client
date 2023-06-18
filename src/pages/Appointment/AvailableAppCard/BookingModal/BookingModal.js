@@ -22,7 +22,7 @@ const BookingModal = ({
     const phone = form.phone.value;
     const email = form.email.value;
     const slot = form.slot.value;
-    console.log(name, phone, email, slot);
+    // console.log(name, phone, email, slot);
     const booking = {
       appointmentDate: date,
       treatmentName: name,
@@ -63,8 +63,7 @@ const BookingModal = ({
         <div className="modal-box relative">
           <label
             htmlFor="booking-modal"
-            className="btn btn-sm btn-circle absolute right-2 top-2"
-          >
+            className="btn btn-sm btn-circle absolute right-2 top-2">
             ✕
           </label>
           <h3 className="text-lg font-bold text-center">{name}</h3>

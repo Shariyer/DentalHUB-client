@@ -31,7 +31,7 @@ const DashBoard = () => {
   return (
     <div>
       {/* <Outlet></Outlet>
-      <div>kjlkjl;kj;lkj;lkj</div> */}
+       */}
     </div>
   );
 };

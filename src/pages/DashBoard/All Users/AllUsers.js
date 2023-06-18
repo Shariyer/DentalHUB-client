@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import Loading from "../../Home/Shared/Loading/Loading";
 // import { authContext } from "../../../ContextAPI/ContextAPI";
 
 const AllUsers = () => {
@@ -26,7 +27,7 @@ const AllUsers = () => {
     },
   });
   if (isLoading) {
-    return <>Loading..........</>;
+    return <Loading />;
   }
   //***********/ Giving Approval to  User /**********
   const handleApproved = (singleUser) => {
