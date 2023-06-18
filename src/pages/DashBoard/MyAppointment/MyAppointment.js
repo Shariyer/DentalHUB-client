@@ -3,12 +3,18 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { authContext } from "../../../ContextAPI/ContextAPI";
+import Loading from "../../Home/Shared/Loading/Loading";
+import { toast } from "react-hot-toast";
 
 const MyAppointment = () => {
   const { user } = useContext(authContext);
   const userEmail = user?.email;
   console.log(userEmail);
-  const { data: usersAppointments = [] } = useQuery({
+  const {
+    data: usersAppointments = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["usersAppointment", userEmail],
     queryFn: async () => {
       const res = await fetch(
@@ -20,11 +26,32 @@ const MyAppointment = () => {
         }
       );
       const data = await res.json();
-      // console.log(data);
+      console.log(data);
 
       return data;
     },
   });
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+  // for deletion of appointments
+  const handleDeleteAppointments = (id) => {
+    fetch(`http://localhost:5000/users/deleteUserAppointment/${id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          refetch();
+          toast.success("Successfully Deleted !!!!");
+          // console.log(data.acknowledged);
+        }
+      });
+  };
   //   const { data: usersAppointments } = useQuery({
   //     queryKey: ["userAppointments"],
   //     queryFn: () => {
@@ -61,6 +88,13 @@ const MyAppointment = () => {
                 <td>{usrApp.treatmentName}</td>
                 <td>{usrApp.appointmentDate}</td>
                 <td>{usrApp.slot}</td>
+                <div>
+                  <button
+                    onClick={() => handleDeleteAppointments(usrApp._id)}
+                    className="btn bg-red-600 text-white">
+                    Delete
+                  </button>
+                </div>
               </tr>
             ))}
           </tbody>

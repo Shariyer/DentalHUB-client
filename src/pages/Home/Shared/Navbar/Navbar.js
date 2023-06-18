@@ -105,9 +105,9 @@ const Navbar = () => {
           Dental HUB
         </Link>
         {user?.uid && (
-          <h1 className="hidden  lg:block ml-24 text-xl font-semibold">
+          <h1 className="hidden  lg:block ml-32 text-xl font-semibold">
             Welcome Back{" "}
-            <span className="uppercase text-green-500">
+            <span className="uppercase text-white ml-5">
               {user?.displayName}
             </span>
           </h1>
