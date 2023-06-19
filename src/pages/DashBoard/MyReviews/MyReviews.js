@@ -14,21 +14,27 @@ const MyReviews = () => {
   }
   console.log(reviews);
   const handleDeleteReview = (id) => {
-    fetch(`http://localhost:5000/reviews/${id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.acknowledged) {
-          refetch();
-          toast.success("Successfully Deleted !!!!");
-          // console.log(data.acknowledged);
-        }
-      });
+    const agree = window.confirm("Sure? Want to DELETE the Review??");
+    if (agree) {
+      fetch(`http://localhost:5000/reviews/${id}`, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          if (data.acknowledged) {
+            refetch();
+            toast.success("Successfully Deleted !!!!");
+            // console.log(data.acknowledged);
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   };
   return (
     <div className=" ml-5 mt-4 p-3">
@@ -37,7 +43,7 @@ const MyReviews = () => {
           {reviews.map((r) => (
             <div
               key={r._id}
-              className="flex items-center justify-between mb-3 hover:border-l-2 hover:border-blue-700 p-3 rounded-md hover:shadow hover:bg-gradient-to-r from-purple-200 to-indigo-500 ">
+              className="flex items-center justify-between mb-3 hover:border-l-2 hover:border-blue-700 p-3 rounded-md hover:shadow bg-gradient-to-r from-purple-200 to-indigo-500 ">
               <p className="  overflow-auto">{r.review}</p>
               <button
                 onClick={() => handleDeleteReview(r._id)}

@@ -14,21 +14,24 @@ const ContactRequest = () => {
   }
   // console.log(reviews);
   const handleDeleteContactRequest = (id) => {
-    fetch(`http://localhost:5000/users/contactRequest/${id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.acknowledged) {
-          refetch();
-          toast.success("Successfully Deleted !!!!");
-          // console.log(data.acknowledged);
-        }
-      });
+    const agree = window.confirm("Sure? Want to DELETE the contact Request??");
+    if (agree) {
+      fetch(`http://localhost:5000/users/contactRequest/${id}`, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.acknowledged) {
+            refetch();
+            toast.success("Successfully Deleted !!!!");
+            // console.log(data.acknowledged);
+          }
+        });
+    }
   };
   return (
     <div className=" ml-5 mt-4 p-3 ">

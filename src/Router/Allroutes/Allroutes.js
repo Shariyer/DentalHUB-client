@@ -16,6 +16,7 @@ import Services from "../../pages/Home/Services/Services";
 import Review from "../../pages/Review/Review";
 import MyReviews from "../../pages/DashBoard/MyReviews/MyReviews";
 import ContactRequest from "../../pages/DashBoard/ContactRequest/ContactRequest";
+import Error from "../../pages/Error/Error";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,30 +25,38 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        errorElement: <Error />,
       },
       {
         path: "/login",
         element: <Login></Login>,
+        errorElement: <Error />,
       },
       {
         path: "/register",
         element: <Register></Register>,
+        errorElement: <Error />,
       },
       {
         path: "/appointment",
         element: <Appointment></Appointment>,
+        errorElement: <Error />,
       },
       {
         path: "/contactUS",
         element: <ContactUs></ContactUs>,
+        errorElement: <Error />,
       },
       {
         path: "/about",
         element: <Services />,
+        errorElement: <Error />,
       },
       {
         path: "/review",
         element: <Review />,
+
+        errorElement: <Error />,
       },
     ],
   },
@@ -58,10 +67,12 @@ const router = createBrowserRouter([
         <DashboardLayout></DashboardLayout>
       </PrivateRoute>
     ),
+    errorElement: <Error />,
     children: [
       {
         path: "/dashboard/myAppointment",
         element: <MyAppointment />,
+        errorElement: <Error />,
       },
       {
         path: "/dashboard/allUsers",
@@ -70,10 +81,12 @@ const router = createBrowserRouter([
             <AllUsers />
           </PrivateRoute>
         ),
+        errorElement: <Error />,
       },
       {
         path: "/dashboard/myReviews",
         element: <MyReviews />,
+        errorElement: <Error />,
       },
       {
         path: "/dashboard/contactRequest",
@@ -82,6 +95,7 @@ const router = createBrowserRouter([
             <ContactRequest />
           </PrivateRoute>
         ),
+        errorElement: <Error />,
       },
     ],
   },

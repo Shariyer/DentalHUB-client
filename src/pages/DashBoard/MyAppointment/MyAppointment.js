@@ -1,7 +1,7 @@
 /** @format */
 
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { authContext } from "../../../ContextAPI/ContextAPI";
 import Loading from "../../Home/Shared/Loading/Loading";
 import { toast } from "react-hot-toast";
@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 const MyAppointment = () => {
   const { user } = useContext(authContext);
   const userEmail = user?.email;
-  console.log(userEmail);
+  // console.log(userEmail);
   const {
     data: usersAppointments = [],
     refetch,
@@ -26,7 +26,7 @@ const MyAppointment = () => {
         }
       );
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
 
       return data;
     },
@@ -36,21 +36,23 @@ const MyAppointment = () => {
   }
   // for deletion of appointments
   const handleDeleteAppointments = (id) => {
-    fetch(`http://localhost:5000/users/deleteUserAppointment/${id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.acknowledged) {
-          refetch();
-          toast.success("Successfully Deleted !!!!");
-          // console.log(data.acknowledged);
-        }
-      });
+    const agree = window.confirm("Sure? You Want to CANCEL The APPOINTMENT??");
+    if (agree)
+      fetch(`http://localhost:5000/users/deleteUserAppointment/${id}`, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.acknowledged) {
+            refetch();
+            toast.success("Successfully Deleted !!!!");
+            // console.log(data.acknowledged);
+          }
+        });
   };
   //   const { data: usersAppointments } = useQuery({
   //     queryKey: ["userAppointments"],
@@ -80,6 +82,7 @@ const MyAppointment = () => {
               <th>SERVICE NAME</th>
               <th>DATE</th>
               <th>TIME SLOT</th>
+              <th>OPERATION</th>
             </tr>
             {usersAppointments.map((usrApp, i) => (
               <tr key={i}>
@@ -88,13 +91,13 @@ const MyAppointment = () => {
                 <td>{usrApp.treatmentName}</td>
                 <td>{usrApp.appointmentDate}</td>
                 <td>{usrApp.slot}</td>
-                <div>
+                <td>
                   <button
                     onClick={() => handleDeleteAppointments(usrApp._id)}
                     className="btn bg-red-600 text-white">
-                    Delete
+                    cancel
                   </button>
-                </div>
+                </td>
               </tr>
             ))}
           </tbody>

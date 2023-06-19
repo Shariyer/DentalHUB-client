@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../../ContextAPI/ContextAPI";
 import { FcGoogle } from "react-icons/fc";
 import useToken from "../../hooks/useToken";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const { LoginWithEP, GoogleLogin } = useContext(authContext);
@@ -34,6 +35,7 @@ const Login = () => {
         const user = result.user;
         console.log("user EP user Logged IN as:", user);
         setLoginUserEmail(email);
+        toast.success("Success Fully Logged In");
         form.reset();
       })
       .catch((err) => console.log(err));
@@ -44,9 +46,12 @@ const Login = () => {
         const user = result.user;
         setLoginUserEmail(user.email);
         // navigate(from, { replace: true });
+        toast.success("Success Fully Logged in with Google");
         console.log("Google Logged in user :", user);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
   // const userInfoToDb = (name, email) => {
   //   const user = {
